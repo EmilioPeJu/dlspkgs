@@ -83,7 +83,6 @@ with pkgs; rec {
     ignoreCollisions = true;
     pathsToLink = [ "/bin" ];
     paths = [
-      perl
       dls-epics-base
       patch-configure
       dls-epics-sscan
