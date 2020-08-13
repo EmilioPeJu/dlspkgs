@@ -1,6 +1,6 @@
 { epicsRepoBaseUrl, libxml2, buildEpicsModule, dls-epics-asyn, dls-epics-busy
-, dls-epics-sscan, dls-epics-calc, dls-epics-adsupport, dls-epics-pvdata
-, dls-epics-normativetypes, dls-epics-pvaccess, dls-epics-pvdatabase
+, dls-epics-sscan, dls-epics-calc, dls-epics-adsupport, dls-epics-pvdatacpp
+, dls-epics-normativetypescpp, dls-epics-pvaccesscpp, dls-epics-pvdatabasecpp
 , hdf5_filters, hdf5, boost, c-blosc, libtiff, libjpeg, zlib, szip }:
 
 buildEpicsModule rec {
@@ -12,10 +12,10 @@ buildEpicsModule rec {
     dls-epics-sscan
     dls-epics-calc
     dls-epics-adsupport
-    dls-epics-pvdata
-    dls-epics-normativetypes
-    dls-epics-pvaccess
-    dls-epics-pvdatabase
+    dls-epics-pvdatacpp
+    dls-epics-normativetypescpp
+    dls-epics-pvaccesscpp
+    dls-epics-pvdatabasecpp
     hdf5
     hdf5_filters
     boost

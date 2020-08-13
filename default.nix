@@ -25,32 +25,32 @@ with pkgs; rec {
   dls-epics-adsupport = callPackage ./dls-epics-adsupport {
     inherit epicsRepoBaseUrl buildEpicsModule;
   };
-  dls-epics-pvcommon = callPackage ./dls-epics-pvcommon {
+  dls-epics-pvcommoncpp = callPackage ./dls-epics-pvcommoncpp {
     inherit epicsRepoBaseUrl buildEpicsModule;
   };
-  dls-epics-pvdata = callPackage ./dls-epics-pvdata {
-    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-pvcommon;
+  dls-epics-pvdatacpp = callPackage ./dls-epics-pvdatacpp {
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-pvcommoncpp;
   };
-  dls-epics-normativetypes = callPackage ./dls-epics-normativetypes {
-    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-pvcommon
-      dls-epics-pvdata;
+  dls-epics-normativetypescpp = callPackage ./dls-epics-normativetypescpp {
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-pvcommoncpp
+      dls-epics-pvdatacpp;
   };
-  dls-epics-pvaccess = callPackage ./dls-epics-pvaccess {
-    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-pvcommon
-      dls-epics-pvdata;
+  dls-epics-pvaccesscpp = callPackage ./dls-epics-pvaccesscpp {
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-pvcommoncpp
+      dls-epics-pvdatacpp;
   };
-  dls-epics-pvdatabase = callPackage ./dls-epics-pvdatabase {
-    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-pvcommon
-      dls-epics-pvdata dls-epics-pvaccess;
+  dls-epics-pvdatabasecpp = callPackage ./dls-epics-pvdatabasecpp {
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-pvcommoncpp
+      dls-epics-pvdatacpp dls-epics-pvaccesscpp;
   };
-  dls-epics-pvaclient = callPackage ./dls-epics-pvaclient {
-    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-pvdata
-      dls-epics-normativetypes dls-epics-pvaccess;
+  dls-epics-pvaclientcpp = callPackage ./dls-epics-pvaclientcpp {
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-pvdatacpp
+      dls-epics-normativetypescpp dls-epics-pvaccesscpp;
   };
   dls-epics-adcore = callPackage ./dls-epics-adcore {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-busy
-      dls-epics-sscan dls-epics-calc dls-epics-adsupport dls-epics-pvdata
-      dls-epics-normativetypes dls-epics-pvaccess dls-epics-pvdatabase
+      dls-epics-sscan dls-epics-calc dls-epics-adsupport dls-epics-pvdatacpp
+      dls-epics-normativetypescpp dls-epics-pvaccesscpp dls-epics-pvdatabasecpp
       hdf5_filters;
   };
   dls-epics-adsimdetector = callPackage ./dls-epics-adsimdetector {
@@ -126,11 +126,11 @@ with pkgs; rec {
       dls-epics-adsupport
       dls-epics-adcore
       dls-epics-adsimdetector
-      dls-epics-pvcommon
-      dls-epics-pvdata
-      dls-epics-pvaccess
-      dls-epics-normativetypes
-      dls-epics-pvaclient
+      dls-epics-pvcommoncpp
+      dls-epics-pvdatacpp
+      dls-epics-pvaccesscpp
+      dls-epics-normativetypescpp
+      dls-epics-pvaclientcpp
       dls-epics-ffmpegserver
       dls-epics-aravisgige
       dls-epics-streamdevice
