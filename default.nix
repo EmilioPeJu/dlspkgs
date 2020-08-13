@@ -84,6 +84,12 @@ with pkgs; rec {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-calc dls-epics-busy
       dls-epics-asyn dls-epics-motor;
   };
+  dls-epics-simhdf5detector = callPackage ./dls-epics-simhdf5detector {
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-adcore;
+  };
+  dls-epics-gdaplugins = callPackage ./dls-epics-gdaplugins {
+    inherit epicsRepoBaseUrl buildEpicsModule;
+  };
   dls_ade =
     python3Packages.callPackage ./dls_ade { inherit epicsRepoBaseUrl pygelf; };
   pygelf = python3Packages.callPackage ./pygelf { };
@@ -134,6 +140,8 @@ with pkgs; rec {
       dls-epics-seq
       dls-epics-motor
       dls-epics-pmac
+      dls-epics-simhdf5detector
+      dls-epics-gdaplugins
       edm
       dls-python
     ];
