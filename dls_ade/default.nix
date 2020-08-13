@@ -1,10 +1,10 @@
-{ buildPythonPackage, pytestrunner, six, packaging, distro, python-gitlab
-, cookiecutter, pygelf, ldap, GitPython }:
+{ epicsRepoBaseUrl, buildPythonPackage, pytestrunner, six, packaging, distro
+, python-gitlab, cookiecutter, pygelf, ldap, GitPython }:
 buildPythonPackage rec {
   pname = "dls_ade";
   version = "4";
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/dls_ade";
+    url = "${epicsRepoBaseUrl}/dls_ade";
     ref = "master";
   };
   preBuild = ''

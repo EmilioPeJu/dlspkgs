@@ -1,5 +1,5 @@
-{ libpng, zlib, freetype, fontconfig, patch-configure, giflib, motif, xorg
-, readline, dls-epics-base, stdenv }:
+{ epicsRepoBaseUrl, libpng, zlib, freetype, fontconfig, patch-configure, giflib
+, motif, xorg, readline, dls-epics-base, stdenv }:
 
 stdenv.mkDerivation {
   name = "edm";
@@ -24,7 +24,7 @@ stdenv.mkDerivation {
   ];
   patches = [ ./libs-to-syslibs.patch ];
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/edm";
+    url = "${epicsRepoBaseUrl}/edm";
     ref = "master";
   };
 

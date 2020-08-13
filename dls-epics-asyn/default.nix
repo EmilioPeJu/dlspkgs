@@ -1,10 +1,10 @@
-{ buildEpicsModule, doxygen }:
+{ epicsRepoBaseUrl, buildEpicsModule, doxygen }:
 
 buildEpicsModule {
   name = "dls-epics-asyn";
   buildInputs = [ doxygen ];
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/asyn";
+    url = "${epicsRepoBaseUrl}/asyn";
     ref = "dls-master";
   };
 }

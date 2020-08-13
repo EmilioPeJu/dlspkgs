@@ -5,6 +5,7 @@ import sys
 import subprocess
 import re
 PREFIX = 'dls-epics'
+WHITE_LIST = set(["TEMPLATE_TOP", "PYTHON_PREFIX"])
 
 
 class PatchConfigure(object):
@@ -24,14 +25,16 @@ class PatchConfigure(object):
         if use_build_inputs:
             output = os.environ.get('buildInputs')
         else:
-            output = subprocess.check_output(['nix-env', '-q', '--installed',
-                                              '--no-name', '--out-path']).decode()
+            output = subprocess.check_output(['nix-env',
+                                              '-q',
+                                              '--installed',
+                                              '--no-name',
+                                              '--out-path']).decode()
         result = {}
         for i in output.split():
             if self.is_epics_related(i):
                 result[self.extract_epics_module_name(i)] = i.strip()
         return result
-
 
     def resolve_path(self, module_name):
         if module_name in self._deps:
@@ -42,11 +45,11 @@ class PatchConfigure(object):
                     find_cmd = f"find-{PREFIX}-base"
                 else:
                     find_cmd = f"find-{PREFIX}-{module_name.lower()}"
-                module_path = subprocess.check_output([find_cmd]).decode().strip()
-            except:
+                module_path = \
+                    subprocess.check_output([find_cmd]).decode().strip()
+            except Exception:
                 module_path = ""
         return module_path
-
 
     def patch(self, path):
         output_content = []
@@ -54,8 +57,11 @@ class PatchConfigure(object):
             for line in infile:
                 sline = line.split('=')
                 module_name = sline[0].strip()
-                if len(sline) == 2 and not module_name.startswith('#'):
+                if len(sline) == 2 and not module_name.startswith('#') and module_name not in WHITE_LIST:
                     module_path = self.resolve_path(module_name)
+                    if not module_path:
+                        print(f"Skipping {module_name}")
+                        continue
                     output_content.append(f"{module_name}={module_path}\n")
                 else:
                     output_content.append(line)

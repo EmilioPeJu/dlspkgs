@@ -1,5 +1,5 @@
-{ readline, libxml2, yasm, buildEpicsModule, dls-epics-asyn, dls-epics-adcore
-, dls-epics-adsimdetector }:
+{ epicsRepoBaseUrl, readline, libxml2, yasm, buildEpicsModule, dls-epics-asyn
+, dls-epics-adcore, dls-epics-adsimdetector }:
 
 buildEpicsModule {
   name = "dls-epics-ffmpegserver";
@@ -13,7 +13,7 @@ buildEpicsModule {
   ];
   patches = [ ./dont-build-yasm.patch ];
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/ffmpegServer";
+    url = "${epicsRepoBaseUrl}/ffmpegServer";
     ref = "dls-master";
   };
 }

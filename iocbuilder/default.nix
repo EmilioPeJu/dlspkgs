@@ -1,11 +1,11 @@
-{ buildPythonPackage, dls-epics-base, qt5, pyqt5, dls_dependency_tree, dls_edm
-}:
+{ epicsRepoBaseUrl, buildPythonPackage, dls-epics-base, qt5, pyqt5
+, dls_dependency_tree, dls_edm }:
 buildPythonPackage rec {
   pname = "iocbuilder";
   version = "3";
   patches = [ ./fix-undefined-symbols.patch ];
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/iocbuilder";
+    url = "${epicsRepoBaseUrl}/iocbuilder";
     ref = "python3";
   };
   postInstall = ''

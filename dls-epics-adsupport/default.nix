@@ -1,9 +1,9 @@
-{ buildEpicsModule }:
+{ epicsRepoBaseUrl, buildEpicsModule }:
 
 buildEpicsModule {
   name = "dls-epics-adsupport";
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/adsupport";
+    url = "${epicsRepoBaseUrl}/adsupport";
     ref = "dls-master";
   };
   preConfigure = ''

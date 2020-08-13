@@ -1,9 +1,9 @@
-{ buildEpicsModule }:
+{ epicsRepoBaseUrl, buildEpicsModule }:
 
 buildEpicsModule rec {
   name = "dls-epics-pvcommon";
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/pvcommoncpp";
+    url = "${epicsRepoBaseUrl}/pvcommoncpp";
     ref = "dls-master";
   };
 }

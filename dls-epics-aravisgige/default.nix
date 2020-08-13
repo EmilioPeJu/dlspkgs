@@ -1,5 +1,5 @@
-{ glib, libxml2, zlib, pkg-config, intltool, buildEpicsModule, dls-epics-asyn
-, dls-epics-adcore }:
+{ epicsRepoBaseUrl, glib, libxml2, zlib, pkg-config, intltool, buildEpicsModule
+, dls-epics-asyn, dls-epics-adcore }:
 
 buildEpicsModule {
   name = "dls-epics-aravisgige";
@@ -14,7 +14,7 @@ buildEpicsModule {
     dls-epics-adcore
   ];
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/aravisGigE";
+    url = "${epicsRepoBaseUrl}/aravisGigE";
     ref = "dls-master";
   };
   patches = [ ./correct-glib-path.patch ];

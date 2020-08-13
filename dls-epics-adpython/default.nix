@@ -1,4 +1,5 @@
-{ python, pythonPackages, buildEpicsModule, dls-epics-asyn, dls-epics-adcore }:
+{ epicsRepoBaseUrl, python, pythonPackages, buildEpicsModule, dls-epics-asyn
+, dls-epics-adcore }:
 
 buildEpicsModule {
   name = "dls-epics-adpython";
@@ -7,7 +8,7 @@ buildEpicsModule {
     sed -i 's|PYTHON_PREFIX=.*|PYTHON_PREFIX=${python}|g' configure/RELEASE
   '';
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/adpython";
+    url = "${epicsRepoBaseUrl}/adpython";
     ref = "master";
   };
 }

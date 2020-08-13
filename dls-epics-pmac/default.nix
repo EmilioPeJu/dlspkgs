@@ -1,5 +1,5 @@
-{ boost, libssh2, buildEpicsModule, dls-epics-calc, dls-epics-busy
-, dls-epics-asyn, dls-epics-motor }:
+{ epicsRepoBaseUrl, boost, libssh2, buildEpicsModule, dls-epics-calc
+, dls-epics-busy, dls-epics-asyn, dls-epics-motor }:
 
 buildEpicsModule {
   name = "dls-epics-pmac";
@@ -12,7 +12,7 @@ buildEpicsModule {
     dls-epics-motor
   ];
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/pmac";
+    url = "${epicsRepoBaseUrl}/pmac";
     ref = "dls-master";
   };
   patches = [ ./disable-tests.patch ];

@@ -1,4 +1,4 @@
-{ buildEpicsModule, dls-epics-pvdata, dls-epics-normativetypes
+{ epicsRepoBaseUrl, buildEpicsModule, dls-epics-pvdata, dls-epics-normativetypes
 , dls-epics-pvaccess }:
 
 buildEpicsModule rec {
@@ -9,7 +9,7 @@ buildEpicsModule rec {
     sed -i 's/EPICS_//g' configure/RELEASE.local
   '';
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/pvaclientcpp";
+    url = "${epicsRepoBaseUrl}/pvaclientcpp";
     ref = "dls-master";
   };
 }

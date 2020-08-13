@@ -1,10 +1,10 @@
-{ cmake, hdf5, c-blosc, stdenv }:
+{ epicsRepoBaseUrl, cmake, hdf5, c-blosc, stdenv }:
 
 stdenv.mkDerivation {
   name = "hdf5_filters";
   buildInputs = [ cmake hdf5 c-blosc ];
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/hdf5_filters";
+    url = "${epicsRepoBaseUrl}/hdf5_filters";
     ref = "master";
   };
 

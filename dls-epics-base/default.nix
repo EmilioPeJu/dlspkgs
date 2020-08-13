@@ -1,9 +1,9 @@
-{ stdenv, perl }:
+{ epicsRepoBaseUrl, stdenv, perl }:
 
 stdenv.mkDerivation {
   name = "dls-epics-base";
   src = builtins.fetchGit {
-    url = "https://github.com/hir12111/epics-base";
+    url = "${epicsRepoBaseUrl}/epics-base";
     ref = "dls-7.0";
   };
 
