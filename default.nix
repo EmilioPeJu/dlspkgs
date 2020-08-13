@@ -94,6 +94,12 @@ with pkgs; rec {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-adcore
       dls-epics-ffmpegserver dls-epics-adsimdetector;
   };
+  dls-epics-autosave = callPackage ./dls-epics-autosave {
+    inherit epicsRepoBaseUrl buildEpicsModule;
+  };
+  dls-epics-deviocstats = callPackage ./dls-epics-deviocstats {
+    inherit epicsRepoBaseUrl buildEpicsModule;
+  };
   dls_ade =
     python3Packages.callPackage ./dls_ade { inherit epicsRepoBaseUrl pygelf; };
   pygelf = python3Packages.callPackage ./pygelf { };
@@ -147,6 +153,8 @@ with pkgs; rec {
       dls-epics-simhdf5detector
       dls-epics-gdaplugins
       dls-epics-adutil
+      dls-epics-autosave
+      dls-epics-deviocstats
       edm
       dls-python
     ];

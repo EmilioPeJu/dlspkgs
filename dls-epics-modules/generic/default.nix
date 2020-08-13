@@ -33,6 +33,10 @@ let
         sed -i /makeIocs/d etc/Makefile;
         sed -i /makeDocumentation/d etc/Makefile;
       fi
+      if [ -f configure/CONFIG_SITE ]; then
+        # avoid cross-compiler targets
+        sed -i '/CROSS_COMPILER_TARGET_ARCHS/d' configure/CONFIG_SITE
+      fi
       runHook postConfigure
     '';
 
