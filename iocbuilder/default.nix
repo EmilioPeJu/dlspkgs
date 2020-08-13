@@ -3,7 +3,7 @@
 buildPythonPackage rec {
   pname = "iocbuilder";
   version = "3";
-  patches = [ ./fix-undefined-symbols.patch ];
+  patches = [ ./fix-undefined-symbols.patch ./no-patch-arch.patch ];
   src = builtins.fetchGit {
     url = "${epicsRepoBaseUrl}/iocbuilder";
     ref = "python3";

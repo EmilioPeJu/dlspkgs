@@ -1,0 +1,32 @@
+diff --git a/xmlbuilder/xmlbuilder.py b/xmlbuilder/xmlbuilder.py
+index b3ded46..300e91b 100755
+--- a/xmlbuilder/xmlbuilder.py
++++ b/xmlbuilder/xmlbuilder.py
+@@ -11,14 +11,6 @@ from optparse import OptionParser
+ from xmlbuilder.xmlconfig import XmlConfig
+
+
+-# hacky hacky change linux-x86 to linux-x86_64 in RHEL6
+-def patch_arch(arch):
+-    lsb_release = Popen(["lsb_release", "-sr"], stdout=PIPE).communicate()[0][0]
+-    if lsb_release == "6" and arch == "linux-x86":
+-        arch = "linux-x86_64"
+-    return arch
+-
+-
+ def main():
+     parser = OptionParser('usage: %prog [options] <xml-file>')
+     parser.add_option(
+@@ -76,10 +68,10 @@ def main():
+     components = [n
+         for n in xml_root.childNodes if n.nodeType == n.ELEMENT_NODE][0]
+     if options.simarch is not None:
+-        architecture = patch_arch(options.simarch)
++        architecture = options.simarch
+         simarch = architecture
+     else:
+-        architecture = patch_arch(str(components.attributes['arch'].value))
++        architecture = str(components.attributes['arch'].value)
+         simarch = None
+
+     # setup the XmlIocBuilder
