@@ -1,7 +1,7 @@
 { epicsRepoBaseUrl, libxml2, buildEpicsModule, dls-epics-asyn, dls-epics-busy
 , dls-epics-sscan, dls-epics-calc, dls-epics-adsupport, dls-epics-pvdata
 , dls-epics-normativetypes, dls-epics-pvaccess, dls-epics-pvdatabase
-, hdf5_filters, hdf5, boost }:
+, hdf5_filters, hdf5, boost, c-blosc, libtiff, libjpeg, zlib, szip }:
 
 buildEpicsModule rec {
   name = "dls-epics-adcore";
@@ -19,6 +19,11 @@ buildEpicsModule rec {
     hdf5
     hdf5_filters
     boost
+    c-blosc
+    libtiff
+    libjpeg
+    zlib
+    szip
   ];
   preConfigure = ''
     # temporal fix to non standard variable names in release file
@@ -31,16 +36,16 @@ buildEpicsModule rec {
     WITH_XML2     = YES
     XML2_EXTERNAL = YES
     WITH_BLOSC    = YES
-    BLOSC_EXTERNAL= NO
+    BLOSC_EXTERNAL= YES
     XML2_INCLUDE = ${libxml2.dev}/include/libxml2
     WITH_JPEG = YES
-    JPEG_EXTERNAL = NO
+    JPEG_EXTERNAL = YES
     WITH_TIFF     = YES
-    TIFF_EXTERNAL = NO
+    TIFF_EXTERNAL = YES
     WITH_ZLIB     = YES
-    ZLIB_EXTERNAL = NO
+    ZLIB_EXTERNAL = YES
     WITH_SZIP = YES
-    SZIP_EXTERNAL = NO
+    SZIP_EXTERNAL = YES
     # Enable PVA plugin
     WITH_PVA = YES
     WITH_QSRV     = NO
