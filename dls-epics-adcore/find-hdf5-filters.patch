@@ -1,0 +1,31 @@
+diff --git a/etc/builder.py b/etc/builder.py
+index 861c9345..700518d1 100644
+--- a/etc/builder.py
++++ b/etc/builder.py
+@@ -1,6 +1,7 @@
+ from __future__ import print_function
+ import xml.dom.minidom
+ import os
++import subprocess
+
+ import iocbuilder
+ from iocbuilder import Substitution, AutoSubstitution, SetSimulation, Device, records, Architecture, IocDataStream
+@@ -54,7 +55,7 @@ def find_dependency(module, dependency):
+
+
+ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+-HDF5_FILTERS_ROOT = find_dependency(ROOT, "HDF5_FILTERS")
++HDF5_FILTERS_ROOT = subprocess.check_output(["find-dls-epics-hdf5_filters"]).decode()
+
+ #############################
+ #    ADCore base classes    #
+@@ -358,7 +359,7 @@ class NDCodec(AsynPort):
+     UniqueName = "PORT"
+     _SpecificTemplate = NDCodecTemplate
+     EnvironmentVariables = [
+-        ("HDF5_PLUGIN_PATH", os.path.join(HDF5_FILTERS_ROOT, "prefix/hdf5_1.10/h5plugin"))
++        ("HDF5_PLUGIN_PATH", os.path.join(HDF5_FILTERS_ROOT, "hdf5_1.10/h5plugin"))
+     ]
+
+     def __init__(self, PORT, NDARRAY_PORT, QUEUE = 2, BLOCK = 0, NDARRAY_ADDR = 0, MAX_THREADS = 1, **args):
+

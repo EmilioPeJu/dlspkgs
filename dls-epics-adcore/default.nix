@@ -55,6 +55,7 @@ buildEpicsModule rec {
     mkdir -p $out/ADApp
     cp ADApp/common*Makefile $out/ADApp
   '';
+  patches = [ ./find-hdf5-filters.patch ];
   src = builtins.fetchGit {
     url = "${epicsRepoBaseUrl}/adcore";
     ref = "dls-master";

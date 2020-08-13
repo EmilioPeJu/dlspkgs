@@ -155,6 +155,7 @@ with pkgs; rec {
       dls-epics-adutil
       dls-epics-autosave
       dls-epics-deviocstats
+      hdf5_filters
       edm
       dls-python
     ];
