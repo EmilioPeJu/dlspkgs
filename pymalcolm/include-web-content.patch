@@ -1,0 +1,18 @@
+diff --git a/setup.py b/setup.py
+index 8392b522..8703645e 100644
+--- a/setup.py
++++ b/setup.py
+@@ -71,7 +71,11 @@ setup(
+         'test': tests_require
+     },
+     include_package_data=True,
+-    package_data={'malcolm': ['modules/*/*/*.yaml', 'modules/*/*/*.svg']},
++    package_data={'malcolm': [ 'modules/*/*/*.yaml', 'modules/*/*/*.svg',
++                               'modules/web/www/*', 'modules/web/www/static/*',
++                               'modules/web/www/static/css/*',
++                               'modules/web/www/static/js/*',
++                               'modules/web/www/static/media/*' ]},
+     data_files=[
+         ('', ['README.rst', 'CHANGELOG.rst', 'LICENSE'])
+     ],
+

@@ -1,0 +1,18 @@
+diff --git a/dls_dependency_tree/tree.py b/dls_dependency_tree/tree.py
+index af8e221..51a7db4 100755
+--- a/dls_dependency_tree/tree.py
++++ b/dls_dependency_tree/tree.py
+@@ -266,9 +266,9 @@ class dependency_tree:
+             elif self.macros[module].upper() in ["YES","NO","TRUE","FALSE"]:
+                 # ignore flags
+                 pass
+-            elif "python" in self.macros[module]:
+-                # ignore python as it has its own build system
+-                pass
++            #elif "python" in self.macros[module]:
++            #    # ignore python as it has its own build system
++            #    pass
+             elif self.macros[module] in [self.e.devArea("support"),\
+                                           self.e.devArea("ioc")]:
+                 # ignore macros defining the development areas
+

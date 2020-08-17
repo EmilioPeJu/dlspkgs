@@ -110,6 +110,25 @@ with pkgs; rec {
   iocbuilder = python3Packages.callPackage ./iocbuilder {
     inherit epicsRepoBaseUrl dls-epics-base dls_dependency_tree dls_edm;
   };
+  plop = python3Packages.callPackage ./plop { };
+  setuptools-dso = python3Packages.callPackage ./setuptools-dso { };
+  epicscorelibs =
+    python3Packages.callPackage ./epicscorelibs { inherit setuptools-dso; };
+  p4p =
+    python3Packages.callPackage ./p4p { inherit setuptools-dso epicscorelibs; };
+  annotypes =
+    python3Packages.callPackage ./annotypes { inherit epicsRepoBaseUrl; };
+  cothread = python3Packages.callPackage ./cothread {
+    inherit epicsRepoBaseUrl dls-epics-base;
+  };
+  scanpointgenerator = python3Packages.callPackage ./scanpointgenerator {
+    inherit epicsRepoBaseUrl annotypes;
+  };
+  vdsgen = python3Packages.callPackage ./vdsgen { inherit epicsRepoBaseUrl; };
+  pymalcolm = python3Packages.callPackage ./pymalcolm {
+    inherit epicsRepoBaseUrl pygelf plop p4p annotypes cothread
+      scanpointgenerator vdsgen;
+  };
   dls-python = python3.withPackages
     (pp: with pp; [ dls_ade dls_dependency_tree dls_edm iocbuilder ]);
   dls-python-env = buildEnv {
@@ -158,6 +177,7 @@ with pkgs; rec {
       hdf5_filters
       edm
       dls-python
+      pymalcolm
     ];
     postBuild = ''
       mv $out/bin/python $out/bin/dls-python

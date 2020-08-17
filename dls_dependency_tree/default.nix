@@ -6,6 +6,7 @@ buildPythonPackage rec {
     url = "${epicsRepoBaseUrl}/dls_dependency_tree";
     ref = "python3";
   };
+  patches = [ ./dont-skip-adpython.patch ];
   preBuild = ''
     sed -i "s/== .\+//g" setup.cfg
     rm Pipfile*
