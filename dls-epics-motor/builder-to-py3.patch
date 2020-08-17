@@ -1,0 +1,30 @@
+diff --git a/etc/builder/MotorSim.py b/etc/builder/MotorSim.py
+index 7ee41d7b..b2730b2f 100644
+--- a/etc/builder/MotorSim.py
++++ b/etc/builder/MotorSim.py
+@@ -1,4 +1,6 @@
+-from common import MotorLib, MotorRecord, basic_asyn_motor
++from __future__ import absolute_import
++
++from .common import MotorLib, MotorRecord, basic_asyn_motor
+ from iocbuilder import AutoSubstitution, Device, ModuleBase
+ from iocbuilder.arginfo import *
+ from iocbuilder.modules.asyn import AsynPort, Asyn
+diff --git a/etc/builder/common.py b/etc/builder/common.py
+index 019f0ad2..64ac3105 100644
+--- a/etc/builder/common.py
++++ b/etc/builder/common.py
+@@ -1,3 +1,4 @@
++from __future__ import print_function
+ from iocbuilder import AutoSubstitution, Device, ModuleBase
+ from iocbuilder.arginfo import *
+ from iocbuilder.modules.asyn import Asyn, AsynPort
+@@ -29,7 +30,7 @@ class motorUtil(AutoSubstitution, Device):
+     TemplateFile = 'motorUtil.template'
+ 
+     def PostIocInitialise(self):
+-        print 'motorUtilInit("%(P)s")' % self.args
++        print('motorUtilInit("%(P)s")' % self.args)
+ 
+ class softMotorForPiezo(AutoSubstitution, MotorLib):
+     TemplateFile = 'softMotorForPiezo.template'

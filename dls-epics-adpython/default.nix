@@ -11,4 +11,5 @@ buildEpicsModule {
     url = "${epicsRepoBaseUrl}/adpython";
     ref = "master";
   };
+  patches = [ ./builder-to-py3.patch ];
 }

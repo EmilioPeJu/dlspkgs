@@ -7,5 +7,5 @@ buildEpicsModule {
     url = "${epicsRepoBaseUrl}/motor";
     ref = "dls-master";
   };
-  patches = [ ./no-cross-compile.patch ];
+  patches = [ ./no-cross-compile.patch ./builder-to-py3.patch ];
 }

@@ -19,4 +19,5 @@ buildEpicsModule {
     url = "${epicsRepoBaseUrl}/adutil";
     ref = "master";
   };
+  patches = [ ./builder-to-py3.patch ];
 }

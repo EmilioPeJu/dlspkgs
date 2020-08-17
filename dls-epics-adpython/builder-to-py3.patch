@@ -1,0 +1,27 @@
+diff --git a/etc/builder.py b/etc/builder.py
+index 58ff631..e3c97e3 100644
+--- a/etc/builder.py
++++ b/etc/builder.py
+@@ -1,3 +1,5 @@
++from __future__ import print_function
++
+ import copy
+ 
+ from iocbuilder import Device, AutoSubstitution
+@@ -96,12 +98,12 @@ class adPythonPlugin(AsynPort):
+         self.Configure = 'adPythonPluginConfigure'
+ 
+     def Initialise(self):
+-        print '# %(Configure)s(portName, filename, classname, queueSize, '\
++        print('# %(Configure)s(portName, filename, classname, queueSize, '\
+             'blockingCallbacks, NDArrayPort, NDArrayAddr, maxBuffers, ' \
+-            'maxMemory)' % self.__dict__
+-        print '%(Configure)s("%(PORT)s", "%(filename)s", "%(classname)s", %(QUEUE)d, ' \
++            'maxMemory)' % self.__dict__)
++        print('%(Configure)s("%(PORT)s", "%(filename)s", "%(classname)s", %(QUEUE)d, ' \
+             '%(BLOCK)d, "%(NDARRAY_PORT)s", %(NDARRAY_ADDR)s, %(BUFFERS)d, ' \
+-            '%(MEMORY)d)' % self.__dict__
++            '%(MEMORY)d)' % self.__dict__)
+ 
+     # __init__ arguments
+     ArgInfo = _SpecificTemplate.ArgInfo + makeArgInfo(__init__,
