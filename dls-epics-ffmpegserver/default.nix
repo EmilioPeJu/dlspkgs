@@ -11,6 +11,7 @@ buildEpicsModule {
     dls-epics-adcore
     dls-epics-adsimdetector
   ];
+  propagatedBuildInputs = [ ffmpeg-full ];
   patches = [ ./use-sys-libs.patch ];
   src = builtins.fetchGit {
     url = "${epicsRepoBaseUrl}/ffmpegServer";
