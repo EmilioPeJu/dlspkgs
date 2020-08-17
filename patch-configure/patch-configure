@@ -59,7 +59,11 @@ class PatchConfigure(object):
                 module_name = sline[0].strip()
                 if len(sline) == 2 and not module_name.startswith('#') and module_name not in WHITE_LIST:
                     module_path = self.resolve_path(module_name)
-                    output_content.append(f"{module_name}={module_path}\n")
+                    if not module_path:
+                        print(f"Skipping {module_name}")
+                        output_content.append(f"# {module_name}={module_path}\n")
+                    else:
+                        output_content.append(f"{module_name}={module_path}\n")
                 else:
                     output_content.append(line)
         output_content = "".join(output_content)
