@@ -51,6 +51,10 @@ buildEpicsModule rec {
     WITH_QSRV     = NO
     EOF
   '';
+  postPatch = ''
+    substituteInPlace etc/builder.py \
+      --replace '@hdf5_filters@' '${hdf5_filters}'
+  '';
   postInstall = ''
     mkdir -p $out/ADApp
     cp ADApp/common*Makefile $out/ADApp

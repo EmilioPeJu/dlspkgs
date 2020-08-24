@@ -15,7 +15,7 @@ index 861c9345..700518d1 100644
 
  ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 -HDF5_FILTERS_ROOT = find_dependency(ROOT, "HDF5_FILTERS")
-+HDF5_FILTERS_ROOT = subprocess.check_output(["find-dls-epics-hdf5_filters"]).decode()
++HDF5_FILTERS_ROOT = "@hdf5_filters@"
 
  #############################
  #    ADCore base classes    #
