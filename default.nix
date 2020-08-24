@@ -129,6 +129,13 @@ with pkgs; rec {
       scanpointgenerator vdsgen;
   };
   etherlab = callPackage ./etherlab { inherit epicsRepoBaseUrl; };
+  TS-EA-IOC-01 = callPackage ./TS-EA-IOC-01 {
+    inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
+      dls-epics-adsimdetector dls-epics-motor dls-epics-adutil
+      dls-epics-adpython dls-epics-simhdf5detector dls-epics-deviocstats;
+  };
+  TS-ML-MALC-01 =
+    callPackage ./TS-ML-MALC-01 { inherit epicsRepoBaseUrl pymalcolm; };
   dls-python = python3.withPackages (pp:
     with pp; [
       dls_ade

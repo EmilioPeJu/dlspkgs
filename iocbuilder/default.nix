@@ -1,5 +1,5 @@
 { epicsRepoBaseUrl, buildPythonPackage, dls-epics-base, qt5, pyqt5
-, dls_dependency_tree, dls_edm }:
+, dls_dependency_tree, dls_edm, git }:
 buildPythonPackage rec {
   pname = "iocbuilder";
   version = "3";
@@ -17,5 +17,5 @@ buildPythonPackage rec {
   '';
   buildInputs = [ dls-epics-base ];
   propagatedBuildInputs =
-    [ qt5.full pyqt5 dls-epics-base dls_dependency_tree dls_edm ];
+    [ qt5.full pyqt5 dls-epics-base dls_dependency_tree dls_edm git ];
 }
