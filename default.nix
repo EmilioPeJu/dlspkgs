@@ -128,6 +128,7 @@ with pkgs; rec {
     inherit epicsRepoBaseUrl pygelf plop p4p annotypes cothread
       scanpointgenerator vdsgen;
   };
+  etherlab = callPackage ./etherlab { inherit epicsRepoBaseUrl; };
   dls-python = python3.withPackages (pp:
     with pp; [
       dls_ade
