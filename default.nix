@@ -1,5 +1,4 @@
-{ pkgs ? import (fetchTarball
-  "https://github.com/NixOS/nixpkgs-channels/archive/nixos-20.03.tar.gz") { }
+{ pkgs ? (import <nixpkgs> { })
 , epicsRepoBaseUrl ? "https://github.com/hir12111/" }:
 
 with pkgs; rec {
