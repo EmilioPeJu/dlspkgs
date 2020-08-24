@@ -128,8 +128,15 @@ with pkgs; rec {
     inherit epicsRepoBaseUrl pygelf plop p4p annotypes cothread
       scanpointgenerator vdsgen;
   };
-  dls-python = python3.withPackages
-    (pp: with pp; [ dls_ade dls_dependency_tree dls_edm iocbuilder ]);
+  dls-python = python3.withPackages (pp:
+    with pp; [
+      dls_ade
+      dls_dependency_tree
+      dls_edm
+      iocbuilder
+      cothread
+      pymalcolm
+    ]);
   dls-python-env = buildEnv {
     name = "dls-python-env";
     ignoreCollisions = true;
@@ -176,7 +183,6 @@ with pkgs; rec {
       hdf5_filters
       edm
       dls-python
-      pymalcolm
     ];
     postBuild = ''
       mv $out/bin/python $out/bin/dls-python
