@@ -23,7 +23,9 @@ class PatchConfigure(object):
 
     def get_epics_deps(self, use_build_inputs):
         if use_build_inputs:
-            output = os.environ.get('buildInputs')
+            build_inputs = os.environ.get('buildInputs', '')
+            native_build_inputs = os.environ.get('nativeBuildInputs', '')
+            output = f"{build_inputs} {native_build_inputs}".strip()
         else:
             output = subprocess.check_output(['nix-env',
                                               '-q',
@@ -86,7 +88,8 @@ def parse_args():
 
 def main():
     args = parse_args()
-    use_build_inputs = bool(os.environ.get('buildInputs', '').strip())
+    use_build_inputs = bool(os.environ.get('buildInputs')) \
+        or bool(os.environ.get('nativeBuildInputs'))
     pc = PatchConfigure(use_build_inputs)
     pc.patch(args.path)
 
