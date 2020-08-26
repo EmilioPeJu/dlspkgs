@@ -10,7 +10,7 @@ let
     tail -f /dev/null
   '';
 in dockerTools.buildImage {
-  name = "dls-test-ad-container";
+  name = "dls-test-ad";
   tag = "latest";
   runAsRoot = ''
     #!${runtimeShell}
