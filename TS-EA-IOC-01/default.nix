@@ -5,6 +5,7 @@
 stdenv.mkDerivation rec {
   name = "TS-EA-IOC-01";
   src = builtins.fetchGit { url = "${epicsRepoBaseUrl}/${name}"; };
+  patches = [ ./no-ugly-buttons.patch ];
   buildInputs = [
     dls-epics-base
     edm
