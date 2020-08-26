@@ -17,12 +17,14 @@ stdenv.mkDerivation rec {
     dls-epics-simhdf5detector
     dls-epics-deviocstats
   ];
-
+  runtimeShell = stdenv.shell;
   stGui = builtins.toFile "st-gui" ''
+    #!@runtimeShell@
     cd @out@/bin/linux-x86_64
     ./st@name@-gui
   '';
   stIoc = builtins.toFile "st-ioc" ''
+    #!@runtimeShell@
     cd @out@/bin/linux-x86_64
     ./st@name@.sh 6064
   '';
@@ -39,9 +41,9 @@ stdenv.mkDerivation rec {
   installPhase = ''
     cp -rf ${name} $out
     make -C $out
-    substituteAll $stGui $out/bin/st${name}-gui
-    chmod +x $out/bin/st${name}-gui
-    substituteAll $stIoc $out/bin/st${name}.sh
-    chmod +x $out/bin/st${name}.sh
+    substituteAll $stGui $out/bin/gui
+    chmod +x $out/bin/gui
+    substituteAll $stIoc $out/bin/ioc
+    chmod +x $out/bin/ioc
   '';
 }
