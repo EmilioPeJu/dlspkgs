@@ -99,6 +99,9 @@ with pkgs; rec {
   dls-epics-deviocstats = callPackage ./dls-epics-deviocstats {
     inherit epicsRepoBaseUrl buildEpicsModule;
   };
+  dls-epics-ethercat = callPackage ./dls-epics-ethercat {
+    inherit buildEpicsModule etherlab dls-epics-asyn dls-epics-busy;
+  };
   dls_ade =
     python3Packages.callPackage ./dls_ade { inherit epicsRepoBaseUrl pygelf; };
   pygelf = python3Packages.callPackage ./pygelf { };

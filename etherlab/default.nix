@@ -7,6 +7,8 @@ stdenv.mkDerivation rec {
     url = "${epicsRepoBaseUrl}/etherlab";
     ref = "stable-1.5";
   };
+  outputs = [ "out" "dev" ];
+  patches = [ ./02-add-liberror.patch ./03-use-liberror.patch ];
   KERNELDIR =
     "${linuxPackages.kernel.dev}/lib/modules/${linuxPackages.kernel.modDirVersion}/build";
   preConfigure = ''
@@ -30,5 +32,10 @@ stdenv.mkDerivation rec {
     make install
     make modules_install INSTALL_MOD_PATH=$out
     runHook postInstall
+    mkdir $dev/lib
+    cp -rf lib/*.h $dev/lib
+    mkdir $dev/master
+    cp -rf master/*.h $dev/master
+    cp -f *.h $dev
   '';
 }

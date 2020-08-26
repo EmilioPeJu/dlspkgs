@@ -1,0 +1,83 @@
+diff --git a/etc/scripts/Makefile b/etc/scripts/Makefile
+index 96ecdef..caafa61 100644
+--- a/etc/scripts/Makefile
++++ b/etc/scripts/Makefile
+@@ -5,7 +5,7 @@ include $(TOP)/configure/CONFIG
+ include $(TOP)/configure/RULES
+ 
+ build: ../diamond_types.py
+-	../diamond_types.py > slave-types.txt
++	python ../diamond_types.py > slave-types.txt
+ 	cp slave-types.txt ../slave-types.txt
+ 
+ # # rule for building slave types list 
+diff --git a/etc/scripts/check_pdos.py b/etc/scripts/check_pdos.py
+index 7503d2c..56cbb51 100755
+--- a/etc/scripts/check_pdos.py
++++ b/etc/scripts/check_pdos.py
+@@ -1,4 +1,4 @@
+-#!/bin/env dls-python
++#!/usr/bin/env python
+ 
+ # script to check whether the revisions of a supported device[1]
+ # have modified names, by checking the xml description files
+diff --git a/etc/scripts/diamond_types.py b/etc/scripts/diamond_types.py
+index d4937c9..efc986e 100755
+--- a/etc/scripts/diamond_types.py
++++ b/etc/scripts/diamond_types.py
+@@ -1,4 +1,4 @@
+-#!/bin/env dls-python
++#!/usr/bin/env python
+ #
+ # script to list ethercat device types supported at 
+ # DLS, filtered according to the entries in 
+diff --git a/etc/scripts/diamond_types_gadc.py b/etc/scripts/diamond_types_gadc.py
+index a42a7ea..26ab9aa 100644
+--- a/etc/scripts/diamond_types_gadc.py
++++ b/etc/scripts/diamond_types_gadc.py
+@@ -1,4 +1,4 @@
+-#!/bin/env dls-python
++#!/usr/bin/env python
+ #
+ #  Script to print the names valid for analogue input generic adc "sample" parameters
+ #  The names are of the form <pdo_name>.<entry_name>
+diff --git a/etc/scripts/examine_file.py b/etc/scripts/examine_file.py
+index 85f729e..9815d13 100644
+--- a/etc/scripts/examine_file.py
++++ b/etc/scripts/examine_file.py
+@@ -1,4 +1,4 @@
+-#!/bin/env dls-python
++#!/usr/bin/env python
+ #
+ # script to list ethercat device types available in one file
+ 
+diff --git a/etc/scripts/expandChain.py b/etc/scripts/expandChain.py
+index 5d8cc9e..52aac79 100755
+--- a/etc/scripts/expandChain.py
++++ b/etc/scripts/expandChain.py
+@@ -1,4 +1,4 @@
+-#!/bin/env dls-python
++#!/usr/bin/env python
+ import os, sys
+ 
+ # import ethercat.py from this module's builder
+diff --git a/etc/scripts/maketemplate.py b/etc/scripts/maketemplate.py
+index 5578a40..a666ba7 100755
+--- a/etc/scripts/maketemplate.py
++++ b/etc/scripts/maketemplate.py
+@@ -1,4 +1,4 @@
+-#!/bin/env dls-python
++#!/usr/bin/env python
+ 
+ # need system python for libxml2 support with xpath
+ 
+diff --git a/etc/scripts/oldToNewChain.py b/etc/scripts/oldToNewChain.py
+index 455ccda..1efd6bb 100755
+--- a/etc/scripts/oldToNewChain.py
++++ b/etc/scripts/oldToNewChain.py
+@@ -1,4 +1,4 @@
+-#!/bin/env dls-python
++#!/usr/bin/env python
+ 
+ from xml.dom.minidom import parse
+ import sys
