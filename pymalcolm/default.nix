@@ -15,7 +15,11 @@ buildPythonPackage rec {
     sed -i '/typing/d' setup.py
     sed -i 's/tornado>=5.1.1/tornado>=5.1/g' setup.py
   '';
-  patches = [ ./fix-cmd-string.patch ./include-web-content.patch ];
+  patches = [
+    ./fix-cmd-string.patch
+    ./include-web-content.patch
+    ./disable-site-log-handlers.patch
+  ];
   buildInputs = [ nose mock pytest-timeout ];
   propagatedBuildInputs = [
     enum-compat
