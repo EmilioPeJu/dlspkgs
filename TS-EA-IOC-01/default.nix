@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
   stGui = builtins.toFile "st-gui" ''
     #!@runtimeShell@
     cd @out@/bin/linux-x86_64
-    ./st@name@-gui
+    ./st@name@-gui "$@"
   '';
   stIoc = builtins.toFile "st-ioc" ''
     #!@runtimeShell@
