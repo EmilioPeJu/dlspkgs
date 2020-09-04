@@ -1,0 +1,16 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 63fa8b0..abe1188 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -113,6 +113,11 @@ ELSE(HDF5_ROOT)
+     # use the built-in FindHDF5.cmake...
+     find_package(HDF5 1.8.14
+                  COMPONENTS C HL)
++    if (HDF5_FOUND)
++      set(HDF5_LIBRARIES "${HDF5_C_LIBRARIES}")
++      set(HDF5HL_LIBRARIES "${HDF5_C_HL_LIBRARIES}")
++      set(HDF5_INCLUDE_DIRS "${HDF5_C_INCLUDE_DIRS}")
++    endif (HDF5_FOUND)
+ ENDIF(HDF5_ROOT)
+ 
+ message("Determining odin-data version")

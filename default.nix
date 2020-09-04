@@ -132,6 +132,7 @@ with pkgs; rec {
       scanpointgenerator vdsgen;
   };
   etherlab = callPackage ./etherlab { inherit epicsRepoBaseUrl; };
+  odin-data = callPackage ./odin-data { };
   TS-EA-IOC-01 = callPackage ./TS-EA-IOC-01 {
     inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
       dls-epics-adsimdetector dls-epics-motor dls-epics-adutil
