@@ -1,4 +1,4 @@
-{ epicsRepoBaseUrl, stdenv, perl }:
+{ epicsRepoBaseUrl, fetchgit, stdenv, perl, readline }:
 
 stdenv.mkDerivation {
   name = "dls-epics-base";
@@ -11,6 +11,7 @@ stdenv.mkDerivation {
 
   patches = [ ./no_abs_path_to_cc.patch ];
 
+  buildInputs = [ readline ];
   propagatedBuildInputs = [ perl ];
 
   setupHook = builtins.toFile "setupHook.sh" ''
