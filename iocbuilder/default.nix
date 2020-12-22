@@ -16,6 +16,11 @@ buildPythonPackage rec {
     cp -rf iocbuilder/defaults $(toPythonPath $out)/iocbuilder
   '';
   buildInputs = [ dls-epics-base ];
+  nativeBuildInputs = [ qt5.wrapQtAppsHook ];
+  dontWrapQtApps = true;
+  postFixup = ''
+    wrapQtApp "$out/bin/xeb"
+  '';
   propagatedBuildInputs =
-    [ qt5.full pyqt5 dls-epics-base dls_dependency_tree dls_edm git ];
+    [ pyqt5 dls-epics-base dls_dependency_tree dls_edm git ];
 }
