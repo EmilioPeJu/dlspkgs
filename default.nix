@@ -141,6 +141,7 @@ with pkgs; rec {
   TS-ML-MALC-01 =
     callPackage ./TS-ML-MALC-01 { inherit epicsRepoBaseUrl pymalcolm; };
   procServ = callPackage ./procServ { };
+  exampleioc = callPackage ./exampleioc { inherit dls-epics-base; };
   dls-python = python3.withPackages (pp:
     with pp; [
       dls_ade
