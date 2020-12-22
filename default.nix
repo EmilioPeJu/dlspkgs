@@ -160,46 +160,4 @@ with pkgs; rec {
       rm $out/bin/py*
     '';
   };
-  dls = buildEnv {
-    name = "dls";
-    ignoreCollisions = true;
-    pathsToLink = [ "/bin" ];
-    paths = [
-      dls-epics-base
-      patch-configure
-      dls-epics-sscan
-      dls-epics-asyn
-      dls-epics-busy
-      dls-epics-busy
-      dls-epics-adsupport
-      dls-epics-adcore
-      dls-epics-adsimdetector
-      dls-epics-pvcommoncpp
-      dls-epics-pvdatacpp
-      dls-epics-pvaccesscpp
-      dls-epics-normativetypescpp
-      dls-epics-pvaclientcpp
-      dls-epics-ffmpegserver
-      dls-epics-aravisgige
-      dls-epics-streamdevice
-      dls-epics-pvlogging
-      dls-epics-adpython
-      dls-epics-gensub
-      dls-epics-seq
-      dls-epics-motor
-      dls-epics-pmac
-      dls-epics-simhdf5detector
-      dls-epics-gdaplugins
-      dls-epics-adutil
-      dls-epics-autosave
-      dls-epics-deviocstats
-      hdf5_filters
-      edm
-      dls-python
-    ];
-    postBuild = ''
-      mv $out/bin/python $out/bin/dls-python
-      rm $out/bin/py*
-    '';
-  };
 }
