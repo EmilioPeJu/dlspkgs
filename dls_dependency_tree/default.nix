@@ -14,5 +14,10 @@ buildPythonPackage rec {
   postInstall = ''
     cp dls_dependency_tree/*.ui $(toPythonPath $out)/dls_dependency_tree
   '';
-  propagatedBuildInputs = [ qt5.full pyqt5 dls_ade ];
+  nativeBuildInputs = [ qt5.wrapQtAppsHook ];
+  dontWrapQtApps = true;
+  postFixup = ''
+    wrapQtApp "$out/bin/dls-dependency-checker.py"
+  '';
+  propagatedBuildInputs = [ pyqt5 dls_ade ];
 }
