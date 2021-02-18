@@ -42,9 +42,9 @@ stdenv.mkDerivation rec {
   installPhase = ''
     cp -rf ${name} $out
     make -C $out
-    substituteAll $stGui $out/bin/gui
-    chmod +x $out/bin/gui
-    substituteAll $stIoc $out/bin/ioc
-    chmod +x $out/bin/ioc
+    substituteAll $stGui $out/bin/${name}-gui
+    chmod +x $out/bin/${name}-gui
+    substituteAll $stIoc $out/bin/${name}.sh
+    chmod +x $out/bin/${name}.sh
   '';
 }
