@@ -3,7 +3,7 @@
 buildEpicsModule {
   name = "dls-epics-streamdevice";
   buildInputs = [ readline dls-epics-asyn ];
-  patches = [ ./fix-build.patch ];
+  patches = [ ./fix-build.patch ./fix-builder.patch ];
   src = builtins.fetchGit {
     url = "${epicsRepoBaseUrl}/streamdevice";
     ref = "dls-master";
