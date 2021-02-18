@@ -83,6 +83,10 @@ with pkgs; rec {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-calc dls-epics-busy
       dls-epics-asyn dls-epics-motor;
   };
+  dls-epics-harvardsyringe = callPackage ./dls-epics-harvardsyringe {
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn
+      dls-epics-streamdevice;
+  };
   dls-epics-simhdf5detector = callPackage ./dls-epics-simhdf5detector {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-adcore;
   };
@@ -137,6 +141,10 @@ with pkgs; rec {
     inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
       dls-epics-adsimdetector dls-epics-motor dls-epics-adutil
       dls-epics-adpython dls-epics-simhdf5detector dls-epics-deviocstats;
+  };
+  TS-EA-IOC-02 = callPackage ./TS-EA-IOC-02 {
+    inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
+      dls-epics-asyn dls-epics-streamdevice dls-epics-harvardsyringe;
   };
   TS-ML-MALC-01 =
     callPackage ./TS-ML-MALC-01 { inherit epicsRepoBaseUrl pymalcolm; };
