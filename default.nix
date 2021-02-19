@@ -1,5 +1,5 @@
 { pkgs ? (import <nixpkgs> { })
-, epicsRepoBaseUrl ? "https://github.com/hir12111/" }:
+, epicsRepoBaseUrl ? "https://github.com/hir12111/", config ? { } }:
 
 with pkgs; rec {
   buildEpicsModule = callPackage ./dls-epics-modules/generic {
@@ -145,6 +145,7 @@ with pkgs; rec {
   TS-EA-IOC-02 = callPackage ./TS-EA-IOC-02 {
     inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
       dls-epics-asyn dls-epics-streamdevice dls-epics-harvardsyringe;
+    config = (config.TS-EA-IOC-02 or { });
   };
   TS-ML-MALC-01 =
     callPackage ./TS-ML-MALC-01 { inherit epicsRepoBaseUrl pymalcolm; };

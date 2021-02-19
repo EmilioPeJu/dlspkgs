@@ -1,5 +1,5 @@
 { epicsRepoBaseUrl, stdenv, dls-epics-base, edm, patch-configure, iocbuilder
-, dls-epics-asyn, dls-epics-streamdevice, dls-epics-harvardsyringe }:
+, dls-epics-asyn, dls-epics-streamdevice, dls-epics-harvardsyringe, config }:
 
 stdenv.mkDerivation rec {
   name = "TS-EA-IOC-02";
@@ -8,8 +8,8 @@ stdenv.mkDerivation rec {
   iocXml = builtins.toFile "iocXml" ''
     <?xml version="1.0" ?>
     <components arch="linux-x86_64">
-      <asyn.AsynIP name="syringePort1" port="192.168.0.253:4005"/>
-      <harvardSyringe.harvardSyringe P="TEST-EA-SPUMP-01" PORT="syringePort1" Q="" name="SPUMP"/>
+      <asyn.AsynIP name="syringePort1" port="${config.ipAddr}"/>
+      <harvardSyringe.harvardSyringe P="${config.pvPrefix}" PORT="syringePort1" Q="" name="SPUMP"/>
     </components>
   '';
 
