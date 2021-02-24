@@ -13,4 +13,8 @@ buildEpicsModule {
     USR_INCLUDES_Linux += -I${libtirpc.dev}/include/tirpc
     EOF
   '';
+  preInstall = ''
+    mkdir -p $out/data
+    cp opi/edm/*.edl $out/data
+  '';
 }
