@@ -170,6 +170,11 @@ in rec {
       dls-epics-asyn dls-epics-streamdevice dls-epics-harvardsyringe;
     config = (config.ioc-harvardsyringe or { });
   };
+  ioc-laudare2xx = callPackage ./ioc-laudare2xx {
+    inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
+      dls-epics-asyn dls-epics-streamdevice dls-epics-busy dls-epics-laudare2xx;
+    config = (config.ioc-laudare2xx or { });
+  };
   TS-ML-MALC-01 =
     callPackage ./TS-ML-MALC-01 { inherit epicsRepoBaseUrl pymalcolm; };
   procServ = callPackage ./procServ { };
