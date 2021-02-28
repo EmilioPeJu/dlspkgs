@@ -97,6 +97,10 @@ in rec {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn
       dls-epics-streamdevice;
   };
+  dls-epics-laudare2xx = callPackage ./dls-epics-laudare2xx {
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn
+      dls-epics-streamdevice dls-epics-busy;
+  };
   dls-epics-simhdf5detector = callPackage ./dls-epics-simhdf5detector {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-adcore;
   };
