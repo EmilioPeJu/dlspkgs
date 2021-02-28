@@ -1,7 +1,7 @@
 { stdenv, dls-epics-base }:
 
 stdenv.mkDerivation rec {
-  name = "exampleioc";
+  name = "ioc-example";
   phases = [ "installPhase" ];
   installPhase = ''
     export T_A=$(perl $EPICS_BASE/lib/perl/EpicsHostArch.pl)

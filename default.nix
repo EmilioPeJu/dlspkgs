@@ -142,15 +142,20 @@ with pkgs; rec {
       dls-epics-adsimdetector dls-epics-motor dls-epics-adutil
       dls-epics-adpython dls-epics-simhdf5detector dls-epics-deviocstats;
   };
-  TS-EA-IOC-02 = callPackage ./TS-EA-IOC-02 {
+  TS-EA-IOC-02 = callPackage ./ioc-harvardsyringe {
     inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
       dls-epics-asyn dls-epics-streamdevice dls-epics-harvardsyringe;
     config = (config.TS-EA-IOC-02 or { });
   };
+  ioc-harvardsyringe = callPackage ./ioc-harvardsyringe {
+    inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
+      dls-epics-asyn dls-epics-streamdevice dls-epics-harvardsyringe;
+    config = (config.ioc-harvardsyringe or { });
+  };
   TS-ML-MALC-01 =
     callPackage ./TS-ML-MALC-01 { inherit epicsRepoBaseUrl pymalcolm; };
   procServ = callPackage ./procServ { };
-  exampleioc = callPackage ./exampleioc { inherit dls-epics-base; };
+  ioc-example = callPackage ./ioc-example { inherit dls-epics-base; };
   dls-python = python3.withPackages (pp:
     with pp; [
       dls_ade
