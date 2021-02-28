@@ -5,7 +5,8 @@ with pkgs; rec {
   buildEpicsModule = callPackage ./dls-epics-modules/generic {
     inherit dls-epics-base patch-configure;
   };
-  dls-epics-base = callPackage ./dls-epics-base { inherit epicsRepoBaseUrl; };
+  dls-epics-base =
+    callPackage ./dls-epics-base { inherit epicsRepoBaseUrl config; };
   patch-configure = callPackage ./patch-configure { };
   hdf5_filters = callPackage ./hdf5_filters { inherit epicsRepoBaseUrl; };
   edm = callPackage ./edm {
