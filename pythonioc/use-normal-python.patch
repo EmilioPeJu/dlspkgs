@@ -1,0 +1,28 @@
+diff --git a/Makefile b/Makefile
+index fe067a4..7ed1cda 100644
+--- a/Makefile
++++ b/Makefile
+@@ -13,7 +13,7 @@ SPHINX_BUILD := $(shell readlink -f $$(which sphinx-build))
+ 
+ PYTHONHOME := $(shell $(PYTHON) -c 'import sys; print(sys.exec_prefix)')
+ 
+-BUILD_DOCS ?= 1
++BUILD_DOCS ?= 0
+ 
+ install: pythonIoc
+ ifeq ($(BUILD_DOCS),1)
+diff --git a/configure/CONFIG_SITE b/configure/CONFIG_SITE
+index 364df81..305d811 100644
+--- a/configure/CONFIG_SITE
++++ b/configure/CONFIG_SITE
+@@ -12,8 +12,8 @@
+ CROSS_COMPILER_TARGET_ARCHS =
+ 
+ # PYTHON = /scratch/local/prefix/python3/bin/python3
+-PYTHON = dls-python
+-# PYTHON = python
++# PYTHON = dls-python
++PYTHON = python
+ 
+ # Definition of python-config application.  This depends on PYTHON defined in
+ # one of the host specific PYTHON_CONFIG files.

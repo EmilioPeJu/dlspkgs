@@ -134,6 +134,7 @@ in rec {
     inherit epicsRepoBaseUrl dls-epics-base dls_dependency_tree dls_edm;
   };
   plop = python3Packages.callPackage ./plop { };
+  pythonioc = callPackage ./pythonioc { inherit buildEpicsModule; };
   setuptools-dso = python3Packages.callPackage ./setuptools-dso { };
   epicscorelibs =
     python3Packages.callPackage ./epicscorelibs { inherit setuptools-dso; };
