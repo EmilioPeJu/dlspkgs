@@ -14,6 +14,9 @@ in rec {
   buildEpicsModule = callPackage ./dls-epics-modules/generic {
     inherit dls-epics-base patch-configure;
   };
+  buildBuilderIoc = callPackage ./dls-epics-modules/builderioc {
+    inherit dls-epics-base patch-configure iocbuilder edm;
+  };
   dls-epics-base =
     callPackage ./dls-epics-base { inherit epicsRepoBaseUrl config; };
   patch-configure = callPackage ./patch-configure { };
@@ -160,25 +163,27 @@ in rec {
       dls-epics-adsimdetector dls-epics-motor dls-epics-adutil
       dls-epics-adpython dls-epics-simhdf5detector dls-epics-deviocstats;
   };
-  TS-EA-IOC-02 = callPackage ./ioc-harvardsyringe {
-    inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
-      dls-epics-asyn dls-epics-streamdevice dls-epics-harvardsyringe;
+  # this is replaced by ioc-harvardsyringe and kept for users familiar with the
+  #   old way
+  TS-EA-IOC-02 = callPackage ./TS-EA-IOC-02 {
+    inherit dls-epics-base edm iocbuilder patch-configure dls-epics-asyn
+      dls-epics-streamdevice dls-epics-harvardsyringe;
     config = (config.TS-EA-IOC-02 or { });
   };
   ioc-harvardsyringe = callPackage ./ioc-harvardsyringe {
-    inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
-      dls-epics-asyn dls-epics-streamdevice dls-epics-harvardsyringe;
+    inherit buildBuilderIoc dls-epics-asyn dls-epics-streamdevice
+      dls-epics-harvardsyringe;
     config = (config.ioc-harvardsyringe or { });
   };
   ioc-laudare2xx = callPackage ./ioc-laudare2xx {
-    inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
-      dls-epics-asyn dls-epics-streamdevice dls-epics-busy dls-epics-laudare2xx;
+    inherit buildBuilderIoc dls-epics-asyn dls-epics-streamdevice dls-epics-busy
+      dls-epics-laudare2xx;
     config = (config.ioc-laudare2xx or { });
   };
   TS-ML-MALC-01 =
     callPackage ./TS-ML-MALC-01 { inherit epicsRepoBaseUrl pymalcolm; };
   procServ = callPackage ./procServ { };
-  ioc-example = callPackage ./ioc-example { inherit dls-epics-base; };
+  iocexample = callPackage ./iocexample { inherit dls-epics-base; };
   dls-python = python3.withPackages (pp:
     with pp; [
       dls_ade
