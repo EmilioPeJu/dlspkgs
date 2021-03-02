@@ -130,6 +130,9 @@ in rec {
     inherit epicsRepoBaseUrl dls_ade;
   };
   dls_edm = python3Packages.callPackage ./dls_edm { inherit epicsRepoBaseUrl; };
+  epicsdbbuilder = python3Packages.callPackage ./epicsdbbuilder {
+    inherit dls-epics-base epicscorelibs;
+  };
   iocbuilder = python3Packages.callPackage ./iocbuilder {
     inherit epicsRepoBaseUrl dls-epics-base dls_dependency_tree dls_edm;
   };
