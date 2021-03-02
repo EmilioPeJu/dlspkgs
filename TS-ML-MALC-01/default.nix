@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/bin
     cp -rf * $out/
-    substituteAll $stMalcolm $out/bin/malcolm
-    chmod +x $out/bin/malcolm
+    substituteAll $stMalcolm $out/bin/${name}
+    chmod +x $out/bin/${name}
   '';
 }
