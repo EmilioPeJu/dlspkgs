@@ -1,6 +1,5 @@
 { epicsRepoBaseUrl, libpng, zlib, freetype, fontconfig, patch-configure, giflib
 , motif, xorg, readline, dls-epics-base, stdenv }:
-
 stdenv.mkDerivation {
   name = "edm";
   buildInputs = [
@@ -27,7 +26,7 @@ stdenv.mkDerivation {
     url = "${epicsRepoBaseUrl}/edm";
     ref = "master";
   };
-
+  NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration";
   findSrc = builtins.toFile "find-epics" ''
     #!/usr/bin/env bash
     echo @out@
