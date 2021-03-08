@@ -162,11 +162,11 @@ in rec {
   };
   etherlab = callPackage ./etherlab { inherit epicsRepoBaseUrl; };
   odin-data = callPackage ./odin-data { };
-  TS-EA-IOC-01 = callPackage ./TS-EA-IOC-01 {
+  TS-EA-IOC-01 = callPackage ./TS-EA-IOC-01 ({
     inherit epicsRepoBaseUrl dls-epics-base edm iocbuilder patch-configure
       dls-epics-adsimdetector dls-epics-motor dls-epics-adutil
       dls-epics-adpython dls-epics-simhdf5detector dls-epics-deviocstats;
-  };
+  } // (config.TS-EA-IOC-01 or { }));
   # this is replaced by ioc-harvardsyringe and kept for users familiar with the
   #   old way
   TS-EA-IOC-02 = callPackage ./TS-EA-IOC-02 {
