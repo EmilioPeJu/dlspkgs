@@ -123,6 +123,9 @@ in rec {
   dls-epics-ethercat = callPackage ./dls-epics-ethercat {
     inherit buildEpicsModule etherlab dls-epics-asyn dls-epics-busy;
   };
+  epics-ca-gateway =
+    callPackage ./epics-ca-gateway { inherit buildEpicsModule epics-pcas; };
+  epics-pcas = callPackage ./epics-pcas { inherit buildEpicsModule; };
   dls_ade =
     python3Packages.callPackage ./dls_ade { inherit epicsRepoBaseUrl pygelf; };
   pygelf = python3Packages.callPackage ./pygelf { };
