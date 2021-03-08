@@ -1,11 +1,13 @@
-{ epicsRepoBaseUrl, stdenv, dls-epics-base, edm, patch-configure, iocbuilder
-, dls-epics-adsimdetector, dls-epics-motor, dls-epics-adutil, dls-epics-adpython
-, dls-epics-simhdf5detector, dls-epics-deviocstats }:
+{ epicsRepoBaseUrl, stdenv, lib, dls-epics-base, edm, patch-configure
+, iocbuilder, dls-epics-adsimdetector, dls-epics-motor, dls-epics-adutil
+, dls-epics-adpython, dls-epics-simhdf5detector, dls-epics-deviocstats
+, noSim ? false }:
 
 stdenv.mkDerivation rec {
   name = "TS-EA-IOC-01";
   src = builtins.fetchGit { url = "${epicsRepoBaseUrl}/${name}"; };
-  patches = [ ./no-ugly-buttons.patch ];
+  patches = [ ./no-ugly-buttons.patch ]
+    ++ lib.optionals noSim [ ./no-sim.patch ];
   buildInputs = [
     dls-epics-base
     edm
@@ -27,7 +29,7 @@ stdenv.mkDerivation rec {
   stIoc = builtins.toFile "st-ioc" ''
     #!@runtimeShell@
     cd @out@/bin/linux-x86_64
-    ./st@name@.sh 6064
+    ./st@name@.sh ${lib.optionalString (!noSim) "6064"}
   '';
   buildPhase = ''
     patch-configure ${name}_RELEASE
