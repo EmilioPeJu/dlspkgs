@@ -4,7 +4,7 @@ import os
 import sys
 import subprocess
 import re
-PREFIX = 'dls-epics'
+MARK = 'epics'
 WHITE_LIST = set(["TEMPLATE_TOP", "PYTHON_PREFIX"])
 
 
@@ -14,12 +14,12 @@ class PatchConfigure(object):
         self._deps = self.get_epics_deps(use_build_inputs)
 
     def extract_epics_module_name(self, path):
-        if path.endswith(f'{PREFIX}-base'):
+        if path.endswith(f'{MARK}-base'):
             return "EPICS_BASE"
-        return re.findall(f'{PREFIX}-(.*)', path)[0].upper()
+        return re.findall(f'{MARK}-(.*)', path)[0].upper()
 
     def is_epics_related(self, path):
-        return PREFIX in path
+        return MARK in path
 
     def get_epics_deps(self, use_build_inputs):
         if use_build_inputs:
@@ -39,19 +39,7 @@ class PatchConfigure(object):
         return result
 
     def resolve_path(self, module_name):
-        if module_name in self._deps:
-            module_path = self._deps[module_name]
-        else:
-            try:
-                if module_name == "EPICS_BASE":
-                    find_cmd = f"find-{PREFIX}-base"
-                else:
-                    find_cmd = f"find-{PREFIX}-{module_name.lower()}"
-                module_path = \
-                    subprocess.check_output([find_cmd]).decode().strip()
-            except Exception:
-                module_path = ""
-        return module_path
+       return self._deps.get(module_name)
 
     def patch(self, path):
         output_content = []
