@@ -104,6 +104,10 @@ in rec {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn
       dls-epics-streamdevice dls-epics-busy;
   };
+  dls-epics-watsonmarlow = callPackage ./dls-epics-watsonmarlow {
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn
+      dls-epics-streamdevice;
+  };
   dls-epics-simhdf5detector = callPackage ./dls-epics-simhdf5detector {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-adcore;
   };
@@ -187,6 +191,10 @@ in rec {
       dls-epics-laudare2xx;
     config = (config.ioc-laudare2xx or { });
   };
+  ioc-watsonmarlow = callPackage ./ioc-watsonmarlow ({
+    inherit buildBuilderIoc dls-epics-asyn dls-epics-streamdevice
+      dls-epics-watsonmarlow;
+  } // (config.ioc-watsonmarlow or { }));
   TS-ML-MALC-01 =
     callPackage ./TS-ML-MALC-01 { inherit epicsRepoBaseUrl pymalcolm; };
   procServ = callPackage ./procServ { };
