@@ -1,20 +1,17 @@
 { epicsRepoBaseUrl, fetchgit, stdenv, perl, readline, lib, config }:
 
-let dev = (config.dev or false);
-in stdenv.mkDerivation {
+stdenv.mkDerivation {
   name = "dls-epics-base";
-  src = builtins.fetchGit {
-    url = if dev then
-      "https://github.com/epics-base/epics-base.git"
-    else
-      "${epicsRepoBaseUrl}/epics-base";
-    ref = if dev then "7.0" else "dls-7.0";
+  src = fetchgit {
+    url = "https://github.com/epics-base/epics-base.git";
+    rev = "R7.0.5";
+    sha256 = "1vzivgbpc6a6v1plxb75zjz15y410iz12lx622nj2xkw7i1wgnc1";
+    fetchSubmodules = true;
   };
 
   phases = [ "unpackPhase" "patchPhase" "installPhase" "fixupPhase" ];
 
-  patches = [ ./no_abs_path_to_cc.patch ]
-    ++ lib.optionals dev [ ./dls_templates.patch ];
+  patches = [ ./no_abs_path_to_cc.patch ./dls_templates.patch ];
 
   buildInputs = [ readline ];
   propagatedBuildInputs = [ perl ];
