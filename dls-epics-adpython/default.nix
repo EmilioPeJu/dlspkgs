@@ -5,7 +5,7 @@ buildEpicsModule {
   name = "dls-epics-adpython";
   buildInputs = [ python pythonPackages.numpy dls-epics-asyn dls-epics-adcore ];
   postConfigure = ''
-    sed -i 's|PYTHON_PREFIX=.*|PYTHON_PREFIX=${python}|g' configure/RELEASE
+    sed -i 'aPYTHON_PREFIX=${python}' configure/RELEASE.local
   '';
   src = builtins.fetchGit {
     url = "${epicsRepoBaseUrl}/adpython";
