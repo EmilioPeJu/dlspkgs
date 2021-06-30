@@ -1,0 +1,17 @@
+diff --git a/motorApp/op/Makefile b/motorApp/op/Makefile
+index c0b8a1e0..5909dc5f 100644
+--- a/motorApp/op/Makefile
++++ b/motorApp/op/Makefile
+@@ -1,11 +1,7 @@
+ TOP = ../..
+ include $(TOP)/configure/CONFIG
+ 
+-ADL_DIR = adl
+-UI_DIR  = ui/autoconvert
+-EDL_DIR = edl/autoconvert
+-OPI_DIR = opi/autoconvert
+-BOB_DIR = bob/autoconvert
++DIRS += edl
+ 
+ include $(CONFIG)/RULES_DIRS
+ 
