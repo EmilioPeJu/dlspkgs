@@ -1,0 +1,12 @@
+diff --git a/ADApp/op/Makefile b/ADApp/op/Makefile
+index c0b8a1e0..6f2501f8 100644
+--- a/ADApp/op/Makefile
++++ b/ADApp/op/Makefile
+@@ -1,6 +1,7 @@
+ TOP = ../..
+ include $(TOP)/configure/CONFIG
+ 
++DIRS += edl
+ ADL_DIR = adl
+ UI_DIR  = ui/autoconvert
+ EDL_DIR = edl/autoconvert
