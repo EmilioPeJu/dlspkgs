@@ -1,20 +1,16 @@
-{ epicsRepoBaseUrl, readline, libxml2, ffmpeg-full, buildEpicsModule
-, dls-epics-asyn, dls-epics-adcore, dls-epics-adsimdetector }:
+{ epicsRepoBaseUrl, fetchgit, readline, libxml2, ffmpeg-full, buildEpicsModule
+, dls-epics-asyn, dls-epics-adcore }:
 
 buildEpicsModule {
   name = "dls-epics-ffmpegserver";
-  buildInputs = [
-    readline
-    libxml2.dev
-    ffmpeg-full
-    dls-epics-asyn
-    dls-epics-adcore
-    dls-epics-adsimdetector
-  ];
+  buildInputs =
+    [ readline libxml2.dev ffmpeg-full dls-epics-asyn dls-epics-adcore ];
   propagatedBuildInputs = [ ffmpeg-full ];
-  patches = [ ./use-sys-libs.patch ];
-  src = builtins.fetchGit {
-    url = "${epicsRepoBaseUrl}/ffmpegServer";
-    ref = "dls-master";
+  extraEtc = ./etc;
+  src = fetchgit {
+    url = "https://github.com/areaDetector/ffmpegServer";
+    rev = "9fe0d46b49572c229b20d5cd6054fd6fb3cb419f";
+    sha256 = "0c990snl2qnvnj975ll9ihy5kcn3b3zi1k89nrclgqcq07jsc6v4";
   };
+  patches = [ ./use-sys-libs.patch ./fix-wrong-dirname.patch ];
 }

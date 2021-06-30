@@ -25,16 +25,4 @@ index fde469a..ab2723c 100644
  LIB_LIBS += NDPlugin
  LIB_SYS_LIBS_WIN32 += user32
  		
-diff --git a/etc/builder.py b/etc/builder.py
-index eda86c0..fedfb70 100644
---- a/etc/builder.py
-+++ b/etc/builder.py
-@@ -10,7 +10,7 @@ class FFmpegServer(Device):
-     '''Library dependencies for ffmpeg'''
-     Dependencies = (ADCore,)
-     # Device attributes
--    LibFileList = ['swresample', 'swscale', 'avutil', 'avcodec', 'avformat', 'avdevice', 'ffmpegServer']
-+    LibFileList = ['ffmpegServer']
-     DbdFileList = ['ffmpegServer']
-     AutoInstantiate = True
 
