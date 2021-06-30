@@ -1,0 +1,27 @@
+/**
+\mainpage calc EPICS Support Module
+\section intro_sec Introduction 
+I'm going to describe the module here, possibly with a <a href="http://www.google.co.uk">web link to the manufacturers webpage</a>. \n
+You can also link to \link calcApp/Db/arrayTest.db internally generated documentation \endlink with alternate text, or by just by mentioning its name, e.g. calcApp/Db/arrayTest.db
+
+\section bugs_sec Known Bugs
+- I'm going to describe any known bugs here
+
+\section user_sec User Manual 
+The \subpage user_manual page contains instructions for the end user
+
+\section build_sec Build Instructions 
+The \subpage build_instructions page contains instructions to setup this module
+
+An example built using these instructions is available in iocs/example
+
+\section builder_sec Builder Objects
+The \subpage builder_objects page contains information on how to use the iocbuilder objects provided by this module
+**/
+
+/* Build instructions and builder objects page will be generated from the xml file given to dls-make-doxygen-documentation.py */
+
+/** 
+\page user_manual User Manual
+This needs to be hand generated. You can link directly to this page from the edm screen if you want
+**/

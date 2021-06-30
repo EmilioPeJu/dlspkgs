@@ -1,9 +1,11 @@
-{ epicsRepoBaseUrl, buildEpicsModule }:
+{ epicsRepoBaseUrl, fetchgit, buildEpicsModule }:
 
 buildEpicsModule {
   name = "dls-epics-calc";
-  src = builtins.fetchGit {
-    url = "${epicsRepoBaseUrl}/calc";
-    ref = "dls-master";
+  extraEtc = ./etc;
+  src = fetchgit {
+    url = "https://github.com/epics-modules/calc";
+    rev = "R3-7-4";
+    sha256 = "14kbrv72cfsavvk5la3m33h9cbhia1n6lywh0ng300qqmlrkv43i";
   };
 }
