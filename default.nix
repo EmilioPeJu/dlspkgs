@@ -1,6 +1,7 @@
 { pkgs ? (import <nixpkgs> { })
 , epicsRepoBaseUrl ? "https://github.com/hir12111/", config ? { } }:
 
+with pkgs; rec {
 with pkgs;
 let
   oldh5py = python3Packages.h5py.overrideAttrs (oldAttrs: {
@@ -61,16 +62,13 @@ in rec {
   };
   dls-epics-adcore = callPackage ./dls-epics-adcore {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-busy
-      dls-epics-sscan dls-epics-calc dls-epics-adsupport dls-epics-pvdatacpp
-      dls-epics-normativetypescpp dls-epics-pvaccesscpp dls-epics-pvdatabasecpp
-      hdf5_filters;
+      dls-epics-sscan dls-epics-calc dls-epics-adsupport hdf5_filters;
   };
   dls-epics-adsimdetector = callPackage ./dls-epics-adsimdetector {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-adcore;
   };
   dls-epics-ffmpegserver = callPackage ./dls-epics-ffmpegserver {
-    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-adcore
-      dls-epics-adsimdetector;
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-adcore dls-epics-asyn;
   };
   dls-epics-aravisgige = callPackage ./dls-epics-aravisgige {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-adcore;

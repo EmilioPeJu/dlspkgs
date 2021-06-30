@@ -1,0 +1,13 @@
+diff --git a/ADApp/pluginTests/HDF5FileReader.cpp b/ADApp/pluginTests/HDF5FileReader.cpp
+index a910a763..71e26716 100644
+--- a/ADApp/pluginTests/HDF5FileReader.cpp
++++ b/ADApp/pluginTests/HDF5FileReader.cpp
+@@ -12,7 +12,7 @@ herr_t file_info(hid_t loc_id, const char *name, const H5L_info_t *info, void *o
+     H5O_info_t infobuf;
+     HDF5FileReader *ptr = (HDF5FileReader *)opdata;
+ 
+-    H5Oget_info_by_name (loc_id, name, &infobuf, H5P_DEFAULT);
++    H5Oget_info_by_name (loc_id, name, &infobuf, H5P_DEFAULT, H5P_DEFAULT);
+     ptr->processGroup(loc_id, name, infobuf.type);
+     return 0;
+  }

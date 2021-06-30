@@ -1,21 +1,15 @@
-{ epicsRepoBaseUrl, libxml2, buildEpicsModule, dls-epics-asyn, dls-epics-busy
-, dls-epics-sscan, dls-epics-calc, dls-epics-adsupport, dls-epics-pvdatacpp
-, dls-epics-normativetypescpp, dls-epics-pvaccesscpp, dls-epics-pvdatabasecpp
+{ epicsRepoBaseUrl, fetchgit, libxml2, buildEpicsModule, dls-epics-asyn
+, dls-epics-busy, dls-epics-sscan, dls-epics-calc, dls-epics-adsupport
 , hdf5_filters, hdf5, boost, c-blosc, libtiff, libjpeg, zlib, szip }:
 
 buildEpicsModule rec {
   name = "dls-epics-adcore";
   buildInputs = [
-    libxml2.dev
     dls-epics-asyn
     dls-epics-busy
     dls-epics-sscan
     dls-epics-calc
     dls-epics-adsupport
-    dls-epics-pvdatacpp
-    dls-epics-normativetypescpp
-    dls-epics-pvaccesscpp
-    dls-epics-pvdatabasecpp
     hdf5
     hdf5_filters
     boost
@@ -25,9 +19,11 @@ buildEpicsModule rec {
     zlib
     szip
   ];
+  propagatedBuildInputs = [ libxml2.dev ];
+  extraEtc = ./etc;
+  extraDb = ./Db;
+  extraEdl = ./edl;
   preConfigure = ''
-    # temporal fix to non standard variable names in release file
-    sed -i 's/CPP//g' configure/RELEASE.local
     cat << EOF > configure/CONFIG_SITE.linux-x86_64.Common
     WITH_HDF5 = YES
     HDF5_EXTERNAL = YES
@@ -51,7 +47,7 @@ buildEpicsModule rec {
     WITH_QSRV     = NO
     EOF
   '';
-  postPatch = ''
+  postConfigure = ''
     substituteInPlace etc/builder.py \
       --replace '@hdf5_filters@' '${hdf5_filters}'
   '';
@@ -59,9 +55,10 @@ buildEpicsModule rec {
     mkdir -p $out/ADApp
     cp ADApp/common*Makefile $out/ADApp
   '';
-  patches = [ ./find-hdf5-filters.patch ];
-  src = builtins.fetchGit {
-    url = "${epicsRepoBaseUrl}/adcore";
-    ref = "dls-master";
+  patches = [ ./fix-missing-parameter.patch ./make-op-edl.patch ];
+  src = fetchgit {
+    url = "https://github.com/areaDetector/ADCore";
+    rev = "R3-11";
+    sha256 = "1yr43hrxlnmwaddwakq6wxb1fx3irmzgw8xc618063x23gi3pnb0";
   };
 }
