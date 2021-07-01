@@ -1,0 +1,24 @@
+diff --git a/simHDF5DetectorApp/src/SimHDF5FileReader.cpp b/simHDF5DetectorApp/src/SimHDF5FileReader.cpp
+index 1a7c35e..e7e92d5 100644
+--- a/simHDF5DetectorApp/src/SimHDF5FileReader.cpp
++++ b/simHDF5DetectorApp/src/SimHDF5FileReader.cpp
+@@ -9,6 +9,7 @@
+ #include <iostream>
+ #include <sys/stat.h>
+ #include <stdlib.h>
++#include <cstring>
+ 
+ /** C function called when inspecting the HDF5 for datasets.
+   * \param[in] loc_id Internal ID of the HDF5 object.
+diff --git a/simHDF5DetectorApp/src/SimHDF5MemoryReader.cpp b/simHDF5DetectorApp/src/SimHDF5MemoryReader.cpp
+index 05ad44f..a9488c6 100644
+--- a/simHDF5DetectorApp/src/SimHDF5MemoryReader.cpp
++++ b/simHDF5DetectorApp/src/SimHDF5MemoryReader.cpp
+@@ -9,6 +9,7 @@
+ #include <iostream>
+ #include <sys/stat.h>
+ #include <stdlib.h>
++#include <cstring>
+ 
+ /** C function called when inspecting the HDF5 for datasets.
+   * \param[in] loc_id Internal ID of the HDF5 object.
