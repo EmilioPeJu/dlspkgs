@@ -2,16 +2,6 @@
 , epicsRepoBaseUrl ? "https://github.com/hir12111/", config ? { } }:
 
 with pkgs; rec {
-with pkgs;
-let
-  oldh5py = python3Packages.h5py.overrideAttrs (oldAttrs: {
-    src = python3Packages.fetchPypi {
-      pname = "h5py";
-      version = "2.9.0";
-      sha256 = "00hhh9iibd7jzq0mfriaivhqwf64r3j6b1xb2mjnnvgkv9iclhcx";
-    };
-  });
-in rec {
   buildEpicsModule = callPackage ./dls-epics-modules/generic {
     inherit dls-epics-base patch-configure;
   };
@@ -156,14 +146,10 @@ in rec {
   scanpointgenerator = python3Packages.callPackage ./scanpointgenerator {
     inherit epicsRepoBaseUrl annotypes;
   };
-  vdsgen = python3Packages.callPackage ./vdsgen {
-    inherit epicsRepoBaseUrl;
-    h5py = oldh5py;
-  };
+  vdsgen = python3Packages.callPackage ./vdsgen { inherit epicsRepoBaseUrl; };
   pymalcolm = python3Packages.callPackage ./pymalcolm {
     inherit epicsRepoBaseUrl pygelf plop p4p annotypes cothread
       scanpointgenerator vdsgen;
-    h5py = oldh5py;
   };
   etherlab = callPackage ./etherlab { inherit epicsRepoBaseUrl; };
   odin-data = callPackage ./odin-data { };
