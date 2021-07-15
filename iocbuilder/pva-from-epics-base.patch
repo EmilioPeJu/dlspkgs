@@ -1,0 +1,60 @@
+diff --git a/iocbuilder/defaults/EPICS_BASE.py b/iocbuilder/defaults/EPICS_BASE.py
+index 0d907a1..0b9fa24 100644
+--- a/iocbuilder/defaults/EPICS_BASE.py
++++ b/iocbuilder/defaults/EPICS_BASE.py
+@@ -147,3 +147,23 @@ class system(Device):
+     ArgInfo = makeArgInfo(__init__,
+         command = Simple("Command to be run post IOC init"))
+ 
++
++class normativeTypesCPP(Device):
++    LibFileList = ['nt']
++    AutoInstantiate = True
++
++
++class pvAccessCPP(Device):
++    LibFileList = ['pvAccess', 'pvAccessIOC', 'pvAccessCA']
++    DbdFileList = ['PVAServerRegister']
++    AutoInstantiate = True
++
++
++class pvDataCPP(Device):
++    LibFileList = ['pvData']
++    AutoInstantiate = True
++
++
++class pvDatabaseCPP(Device):
++    LibFileList = ['pvDatabase']
++    AutoInstantiate = True
+diff --git a/iocbuilder/device.py b/iocbuilder/device.py
+index 05d79ea..d072da1 100644
+--- a/iocbuilder/device.py
++++ b/iocbuilder/device.py
+@@ -24,7 +24,7 @@ __all__ = ['Device', 'RecordFactory']
+ 
+ # Wrapper routines for local paths to library, object and dbd files.
+ def _LibPath(file):
+-    if Configure.dynamic_load:
++    if getattr(Configure, 'dynamic_load', False):
+         return os.path.join('bin', Architecture(), file)
+     else:
+         return os.path.join('lib', Architecture(), 'lib%s.a' % file)
+diff --git a/iocbuilder/iocinit.py b/iocbuilder/iocinit.py
+index 6119788..70e9b71 100644
+--- a/iocbuilder/iocinit.py
++++ b/iocbuilder/iocinit.py
+@@ -99,8 +99,13 @@ class iocInit(support.Singleton):
+         # to put off creating it until configure tells us to initialise.
+         mydbstatic.ImportFunctions()
+         ModuleVersion('EPICS_BASE', home = paths.EPICS_BASE, use_name = False)
+-        from iocbuilder.modules.EPICS_BASE import epicsBase
++        from iocbuilder.modules.EPICS_BASE import epicsBase, \
++            normativeTypesCPP, pvAccessCPP, pvDataCPP, pvDatabaseCPP
+         epicsBase(self)
++        normativeTypesCPP()
++        pvAccessCPP()
++        pvDataCPP()
++        pvDatabaseCPP()
+ 
+         # Now the architecture has been set (assuming it has), set up the
+         # appropriate IOC string quoting function.

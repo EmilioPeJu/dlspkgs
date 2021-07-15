@@ -7,6 +7,7 @@ buildPythonPackage rec {
     ./fix-undefined-symbols.patch
     ./no-patch-arch.patch
     ./fix-export-modules.patch
+    ./pva-from-epics-base.patch
   ];
   src = builtins.fetchGit {
     url = "${epicsRepoBaseUrl}/iocbuilder";
