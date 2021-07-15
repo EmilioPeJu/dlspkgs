@@ -17,7 +17,7 @@ buildEpicsModule {
     url = "${epicsRepoBaseUrl}/aravisGigE";
     ref = "dls-master";
   };
-  patches = [ ./correct-glib-path.patch ];
+  patches = [ ./correct-glib-path.patch ./builder-to-py3.patch ];
   postConfigure = ''
     cat << EOF >> configure/CONFIG_SITE
     CHECK_RELEASE = YES

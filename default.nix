@@ -193,6 +193,10 @@ in rec {
     inherit buildBuilderIoc dls-epics-asyn dls-epics-streamdevice
       dls-epics-watsonmarlow;
   } // (config.ioc-watsonmarlow or { }));
+  ioc-aravisgige = callPackage ./ioc-aravisgige ({
+    inherit buildBuilderIoc dls-epics-adcore dls-epics-aravisgige
+      dls-epics-adutil;
+  } // (config.ioc-aravisgige or { }));
   TS-ML-MALC-01 =
     callPackage ./TS-ML-MALC-01 { inherit epicsRepoBaseUrl pymalcolm; };
   procServ = callPackage ./procServ { };

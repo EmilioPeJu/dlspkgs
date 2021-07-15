@@ -1,0 +1,19 @@
+diff --git a/etc/builder.py b/etc/builder.py
+index 545548b..8cdf03c 100644
+--- a/etc/builder.py
++++ b/etc/builder.py
+@@ -52,10 +52,10 @@ class aravisCamera(AsynPort):
+     DbdFileList = ['aravisCameraSupport']
+ 
+     def Initialise(self):
+-        print '# aravisCameraConfig(portName, cameraName, ' \
+-            'maxBuffers, maxMemory)'
+-        print 'aravisCameraConfig("%(PORT)s", "%(ID)s", ' \
+-            '%(BUFFERS)d, %(MEMORY)d)' % self.__dict__
++        print('# aravisCameraConfig(portName, cameraName, ' \
++            'maxBuffers, maxMemory)')
++        print('aravisCameraConfig("%(PORT)s", "%(ID)s", ' \
++            '%(BUFFERS)d, %(MEMORY)d)' % self.__dict__)
+ 
+ def aravisCamera_sim(aravisCamera=aravisCamera, **kwargs):
+     kwargs.pop("ID")
