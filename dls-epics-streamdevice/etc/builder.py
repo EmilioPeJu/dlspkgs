@@ -19,7 +19,7 @@ streamDeviceVersion = 2
 
 
 class streamDevice(Device):
-    LibFileList = ['pcre', 'stream']
+    LibFileList = ['stream']
     DbdFileList = ['stream']
     Dependencies = (Asyn,)
     AutoInstantiate = True

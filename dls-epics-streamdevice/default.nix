@@ -1,8 +1,9 @@
-{ epicsRepoBaseUrl, fetchgit, readline, buildEpicsModule, dls-epics-asyn }:
+{ epicsRepoBaseUrl, fetchgit, readline, pcre, buildEpicsModule, dls-epics-asyn
+}:
 
 buildEpicsModule {
   name = "dls-epics-streamdevice";
-  buildInputs = [ readline dls-epics-asyn ];
+  buildInputs = [ readline dls-epics-asyn pcre.out pcre.dev ];
   NIX_CFLAGS_COMPILE = "-Wno-error=format-security";
   extraEtc = ./etc;
   src = fetchgit {
@@ -10,4 +11,10 @@ buildEpicsModule {
     rev = "2.8.19";
     sha256 = "1pfyxb6l9aqmy4kpsm3iz2j23rpjiwgqmk65jb5k3c89d193ml2i";
   };
+  postConfigure = ''
+    cat <<EOF >> configure/RELEASE.local
+    PCRE_INCLUDE=${pcre.dev}/include
+    PCRE_LIB=${pcre.out}/lib
+    EOF
+  '';
 }
