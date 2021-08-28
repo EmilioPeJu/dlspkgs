@@ -1,0 +1,12 @@
+diff --git a/vmeApp/devcsr.c b/vmeApp/devcsr.c
+index 16640c0..a458cae 100644
+--- a/vmeApp/devcsr.c
++++ b/vmeApp/devcsr.c
+@@ -11,6 +11,7 @@
+ #include <stdio.h>
+ 
+ #include <errlog.h>
++#include "shareLib.h"
+ #include "devLib.h"
+ #define epicsExportSharedSymbols
+ #include "devcsr.h"

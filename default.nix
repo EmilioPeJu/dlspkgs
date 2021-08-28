@@ -115,6 +115,11 @@ with pkgs; rec {
   dls-epics-ethercat = callPackage ./dls-epics-ethercat {
     inherit buildEpicsModule etherlab dls-epics-asyn dls-epics-busy;
   };
+  dls-epics-devlib2 =
+    callPackage ./dls-epics-devlib2 { inherit buildEpicsModule; };
+  dls-epics-mrfioc2 = callPackage ./dls-epics-mrfioc2 {
+    inherit buildEpicsModule dls-epics-devlib2;
+  };
   epics-ca-gateway =
     callPackage ./epics-ca-gateway { inherit buildEpicsModule epics-pcas; };
   epics-pcas = callPackage ./epics-pcas { inherit buildEpicsModule; };
