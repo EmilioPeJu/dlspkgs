@@ -120,6 +120,7 @@ with pkgs; rec {
   dls-epics-mrfioc2 = callPackage ./dls-epics-mrfioc2 {
     inherit buildEpicsModule dls-epics-devlib2;
   };
+  mrfioc2 = callPackage ./mrfioc2 { inherit dls-epics-mrfioc2; };
   epics-ca-gateway =
     callPackage ./epics-ca-gateway { inherit buildEpicsModule epics-pcas; };
   epics-pcas = callPackage ./epics-pcas { inherit buildEpicsModule; };
