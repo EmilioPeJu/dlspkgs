@@ -77,6 +77,7 @@ let
           cp -rf $i $out
         fi
       done
+      [ -d include ] && cp -rf include $out/
       runHook postInstall
     '' else
       installPhase;
