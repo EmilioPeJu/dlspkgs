@@ -57,6 +57,9 @@ with pkgs; rec {
   dls-epics-adsimdetector = callPackage ./dls-epics-adsimdetector {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-adcore;
   };
+  dls-epics-adurl = callPackage ./dls-epics-adurl {
+    inherit epicsRepoBaseUrl buildEpicsModule dls-epics-asyn dls-epics-adcore;
+  };
   dls-epics-ffmpegserver = callPackage ./dls-epics-ffmpegserver {
     inherit epicsRepoBaseUrl buildEpicsModule dls-epics-adcore dls-epics-asyn;
   };

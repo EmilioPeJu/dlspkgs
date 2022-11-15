@@ -1,0 +1,13 @@
+diff --git a/urlApp/src/URLDriver.cpp b/urlApp/src/URLDriver.cpp
+index 1d0efa4..b9f2617 100644
+--- a/urlApp/src/URLDriver.cpp
++++ b/urlApp/src/URLDriver.cpp
+@@ -120,7 +120,7 @@ asynStatus URLDriver::readImage()
+             break;
+         case 32:
+             dataType = NDUInt32;
+-            storageType = IntegerPixel;
++            storageType = LongPixel;
+             break;
+         default:
+             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR, 
