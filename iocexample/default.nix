@@ -1,4 +1,4 @@
-{ stdenv, dls-epics-base }:
+{ stdenv, epics-base }:
 
 stdenv.mkDerivation rec {
   name = "iocexample";
@@ -33,5 +33,5 @@ stdenv.mkDerivation rec {
     EOF
     chmod +x $out/bin/${name}
   '';
-  buildInputs = [ dls-epics-base ];
+  buildInputs = [ epics-base ];
 }

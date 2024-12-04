@@ -28,8 +28,8 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
     mkdir -p $out/bin
-    substituteAll $findSrc $out/bin/find-dls-epics-hdf5_filters
-    chmod +x $out/bin/find-dls-epics-hdf5_filters
+    substituteAll $findSrc $out/bin/find-hdf5_filters
+    chmod +x $out/bin/find-hdf5_filters
     make install
     runHook postInstall
   '';

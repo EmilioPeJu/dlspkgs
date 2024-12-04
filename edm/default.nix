@@ -1,5 +1,5 @@
 { epicsRepoBaseUrl, libpng, zlib, freetype, fontconfig, patch-configure, giflib
-, motif, xorg, readline, dls-epics-base, stdenv }:
+, motif, xorg, readline, epics-base, stdenv }:
 stdenv.mkDerivation {
   name = "edm";
   buildInputs = [
@@ -19,7 +19,7 @@ stdenv.mkDerivation {
     fontconfig
     motif
     readline
-    dls-epics-base
+    epics-base
   ];
   patches = [ ./libs-to-syslibs.patch ];
   src = builtins.fetchGit {

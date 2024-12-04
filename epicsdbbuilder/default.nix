@@ -1,4 +1,4 @@
-{ buildPythonPackage, dls-epics-base, epicscorelibs }:
+{ buildPythonPackage, epics-base, epicscorelibs }:
 
 buildPythonPackage rec {
   pname = "epicsdbbuilder";
@@ -6,6 +6,6 @@ buildPythonPackage rec {
   src = builtins.fetchGit {
     url = "https://github.com/dls-controls/epicsdbbuilder";
   };
-  buildInputs = [ dls-epics-base ];
+  buildInputs = [ epics-base ];
   propagatedBuildInputs = [ epicscorelibs ];
 }
